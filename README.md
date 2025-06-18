@@ -1,1 +1,1 @@
-#iCompra
+iCompra
