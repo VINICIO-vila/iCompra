@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iCompra - Tu Tienda Online</title>
+    <title>iCompra</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,11 +16,10 @@
         header {
             background-color: #003366;
             color: white;
-            padding: 1rem 2rem;
+            padding: 1rem;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            justify-content: space-between;
         }
 
         header .logo {
@@ -31,11 +30,6 @@
         header .logo img {
             height: 50px;
             margin-right: 15px;
-        }
-
-        header .logo span {
-            font-size: 1.8rem;
-            font-weight: bold;
         }
 
         header nav a {
@@ -49,26 +43,35 @@
             text-decoration: underline;
         }
 
-        .container {
+        .content {
             padding: 2rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .home h2 {
+            font-size: 2rem;
+            color: #003366;
             text-align: center;
         }
 
         .categories ul {
+            display: flex;
+            justify-content: space-around;
             list-style: none;
             padding: 0;
-            display: flex;
-            justify-content: center;
         }
 
         .categories ul li {
-            margin: 0 1rem;
+            margin: 0.5rem;
         }
 
         .categories ul li a {
+            color: #003366;
             text-decoration: none;
             font-size: 1.2rem;
-            color: #0066cc;
             font-weight: bold;
         }
 
@@ -76,32 +79,38 @@
             text-decoration: underline;
         }
 
-        .offers {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
-        .offers .product {
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            padding: 1rem;
-            margin: 1rem;
-            width: 200px;
-            text-align: center;
+        .product-card {
             background-color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
-        .offers .product button {
-            background-color: #0066cc;
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .product-card button {
+            background-color: #003366;
             color: white;
             border: none;
             padding: 0.5rem 1rem;
             border-radius: 5px;
+            margin-top: 1rem;
             cursor: pointer;
         }
 
-        .offers .product button:hover {
+        .product-card button:hover {
             background-color: #004d99;
         }
 
@@ -110,40 +119,60 @@
             padding: 1rem;
             background-color: #003366;
             color: white;
-            margin-top: auto;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .active {
-            display: block;
         }
     </style>
+    <script>
+        const cart = [];
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.content').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        function showCategory(category) {
+            const categorySection = document.getElementById('category-details');
+            categorySection.querySelector('h2').textContent = category;
+            showSection('category-details');
+        }
+
+        function addToCart(product) {
+            cart.push(product);
+            alert(`${product} ha sido agregado al carrito.`);
+            showCart();
+        }
+
+        function showCart() {
+            const cartSection = document.getElementById('cart');
+            const cartList = cartSection.querySelector('.cart-list');
+            cartList.innerHTML = cart.length ? cart.map(item => `<li>${item}</li>`).join('') : '<p>Tu carrito está vacío.</p>';
+            showSection('cart');
+        }
+    </script>
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="iCompra_logo.png" alt="Logo de iCompra">
-            <span>iCompra</span>
+            <img src="iCompra_logo.png" alt="iCompra Logo">
+            <h1>iCompra</h1>
         </div>
         <nav>
-            <a href="#" onclick="showPage('home')">Inicio</a>
-            <a href="#" onclick="showPage('categories')">Categorías</a>
-            <a href="#" onclick="showPage('offers')">Ofertas</a>
-            <a href="#" onclick="showPage('cart')">Carrito</a>
+            <a href="#" onclick="showSection('home')">Inicio</a>
+            <a href="#" onclick="showSection('categories')">Categorías</a>
+            <a href="#" onclick="showSection('offers')">Ofertas</a>
+            <a href="#" onclick="showCart()">Carrito</a>
         </nav>
     </header>
 
     <main>
-        <section id="home" class="container active">
-            <h1>Bienvenido a iCompra</h1>
+        <section id="home" class="content">
+            <h2>Bienvenido a iCompra</h2>
             <p>Tu tienda online de confianza con las mejores ofertas y productos.</p>
         </section>
 
-        <section id="categories" class="container hidden">
-            <h1>Categorías</h1>
+        <section id="categories" class="content hidden">
+            <h2>Categorías</h2>
             <ul>
                 <li><a href="#" onclick="showCategory('Tecnología')">Tecnología</a></li>
                 <li><a href="#" onclick="showCategory('Hogar')">Hogar</a></li>
@@ -152,72 +181,37 @@
             </ul>
         </section>
 
-        <section id="category-details" class="container hidden">
-            <h1 id="category-title" style="color: #003366;"></h1>
-            <p>Aquí se mostrarán los productos de la categoría seleccionada.</p>
+        <section id="category-details" class="content hidden">
+            <h2></h2>
+            <p>Productos de esta categoría aparecerán aquí.</p>
         </section>
 
-        <section id="offers" class="container hidden">
-            <h1>Ofertas del Día</h1>
-            <div class="offers">
-                <div class="product">
+        <section id="offers" class="content hidden">
+            <h2>Ofertas del Día</h2>
+            <div class="products">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Producto 1">
                     <h3>Producto 1</h3>
-                    <p>$10.00</p>
+                    <p>$100</p>
                     <button onclick="addToCart('Producto 1')">Comprar</button>
                 </div>
-                <div class="product">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Producto 2">
                     <h3>Producto 2</h3>
-                    <p>$20.00</p>
+                    <p>$200</p>
                     <button onclick="addToCart('Producto 2')">Comprar</button>
-                </div>
-                <div class="product">
-                    <h3>Producto 3</h3>
-                    <p>$30.00</p>
-                    <button onclick="addToCart('Producto 3')">Comprar</button>
                 </div>
             </div>
         </section>
 
-        <section id="cart" class="container hidden">
-            <h1>Carrito</h1>
-            <p id="cart-content">Tu carrito está vacío.</p>
+        <section id="cart" class="content hidden">
+            <h2>Carrito</h2>
+            <ul class="cart-list"></ul>
         </section>
     </main>
 
     <footer>
         &copy; 2025 iCompra. Todos los derechos reservados.
     </footer>
-
-    <script>
-        let cart = [];
-
-        function showPage(pageId) {
-            document.querySelectorAll('section').forEach(section => {
-                section.classList.add('hidden');
-            });
-            document.getElementById(pageId).classList.remove('hidden');
-        }
-
-        function showCategory(categoryName) {
-            showPage('category-details');
-            document.getElementById('category-title').textContent = categoryName;
-        }
-
-        function addToCart(productName) {
-            cart.push(productName);
-            alert(`${productName} ha sido agregado al carrito.`);
-            updateCart();
-            showPage('cart');
-        }
-
-        function updateCart() {
-            const cartContent = document.getElementById('cart-content');
-            if (cart.length === 0) {
-                cartContent.textContent = 'Tu carrito está vacío.';
-            } else {
-                cartContent.innerHTML = '<ul>' + cart.map(item => `<li>${item}</li>`).join('') + '</ul>';
-            }
-        }
-    </script>
 </body>
 </html>
