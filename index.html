@@ -24,6 +24,16 @@
         }
 
         header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        header .logo span {
             font-size: 1.8rem;
             font-weight: bold;
         }
@@ -114,7 +124,10 @@
 </head>
 <body>
     <header>
-        <div class="logo">iCompra</div>
+        <div class="logo">
+            <img src="iCompra_logo.png" alt="Logo de iCompra">
+            <span>iCompra</span>
+        </div>
         <nav>
             <a href="#" onclick="showPage('home')">Inicio</a>
             <a href="#" onclick="showPage('categories')">Categorías</a>
@@ -208,5 +221,3 @@
     </script>
 </body>
 </html>
-
-  
