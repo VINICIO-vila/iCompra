@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iCompra - Tu Tienda Online</title>
     <style>
         body {
@@ -11,9 +11,6 @@
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
         header {
             background-color: #003366;
@@ -24,13 +21,18 @@
             align-items: center;
         }
         header .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        header .logo img {
+            height: 40px;
+            margin-right: 10px;
         }
         header nav a {
             color: white;
             text-decoration: none;
             margin: 0 1rem;
+            font-size: 1rem;
         }
         header nav a:hover {
             text-decoration: underline;
@@ -45,15 +47,16 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        .categories, .products {
-            margin: 1rem;
+        .categories, .products, .about, .contact {
+            margin: 1rem auto;
             padding: 1rem;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            flex: 1;
+            width: 90%;
+            max-width: 1200px;
         }
-        .categories h2, .products h2 {
+        .categories h2, .products h2, .about h2, .contact h2 {
             margin-top: 0;
         }
         .categories ul {
@@ -63,6 +66,11 @@
         .categories ul li {
             display: inline;
             margin-right: 1rem;
+        }
+        .categories ul li a {
+            text-decoration: none;
+            color: #003366;
+            font-weight: bold;
         }
         .products .product {
             display: inline-block;
@@ -90,26 +98,39 @@
             padding: 1rem;
             background-color: #003366;
             color: white;
+            position: relative;
+            bottom: 0;
             width: 100%;
+        }
+        footer a {
+            color: #66b3ff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">iCompra</div>
+        <div class="logo">
+            <img src="iCompra_logo.png" alt="Logo de iCompra">
+            <div>iCompra</div>
+        </div>
         <nav>
-            <a href="#">Inicio</a>
-            <a href="#">Categorías</a>
-            <a href="#">Carrito</a>
-            <a href="#">Mi Cuenta</a>
+            <a href="#inicio">Inicio</a>
+            <a href="#categorias">Categorías</a>
+            <a href="#productos">Ofertas</a>
+            <a href="#contacto">Contacto</a>
+            <a href="#carrito">Carrito</a>
         </nav>
     </header>
 
     <div class="search-bar">
-        <input type="text" placeholder="Busca productos, marcas y más..." />
+        <input type="text" placeholder="Busca productos, marcas y más...">
     </div>
 
-    <section class="categories">
+    <section class="categories" id="categorias">
         <h2>Categorías Destacadas</h2>
         <ul>
             <li><a href="#">Tecnología</a></li>
@@ -119,36 +140,47 @@
         </ul>
     </section>
 
-    <section class="products">
+    <section class="products" id="productos">
         <h2>Ofertas del Día</h2>
         <div class="product">
-            <img src="https://via.placeholder.com/150" alt="Producto 1" />
+            <img src="https://via.placeholder.com/150" alt="Producto 1">
             <h3>Producto 1</h3>
             <p>$10.00</p>
             <button>Comprar</button>
         </div>
         <div class="product">
-            <img src="https://via.placeholder.com/150" alt="Producto 2" />
+            <img src="https://via.placeholder.com/150" alt="Producto 2">
             <h3>Producto 2</h3>
             <p>$20.00</p>
             <button>Comprar</button>
         </div>
         <div class="product">
-            <img src="https://via.placeholder.com/150" alt="Producto 3" />
+            <img src="https://via.placeholder.com/150" alt="Producto 3">
             <h3>Producto 3</h3>
             <p>$30.00</p>
             <button>Comprar</button>
         </div>
         <div class="product">
-            <img src="https://via.placeholder.com/150" alt="Producto 4" />
+            <img src="https://via.placeholder.com/150" alt="Producto 4">
             <h3>Producto 4</h3>
             <p>$40.00</p>
             <button>Comprar</button>
         </div>
     </section>
 
+    <section class="about" id="inicio">
+        <h2>Sobre Nosotros</h2>
+        <p>iCompra es tu marketplace de confianza. Aquí encontrarás productos de calidad al mejor precio. ¡Explora nuestras ofertas diarias y descubre lo que tenemos para ti!</p>
+    </section>
+
+    <section class="contact" id="contacto">
+        <h2>Contacto</h2>
+        <p>¿Tienes preguntas? Escríbenos a <a href="mailto:contacto@icompra.com">contacto@icompra.com</a> o llama al +123 456 7890.</p>
+    </section>
+
     <footer>
-        &copy; 2025 iCompra. Todos los derechos reservados.
+        &copy; 2025 iCompra. Todos los derechos reservados. <a href="#inicio">Volver al inicio</a>
     </footer>
 </body>
 </html>
+
