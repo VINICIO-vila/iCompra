@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>iCompra - Tu Tienda Online</title>
     <style>
         body {
@@ -11,6 +11,9 @@
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         header {
             background-color: #003366;
@@ -32,7 +35,6 @@
             color: white;
             text-decoration: none;
             margin: 0 1rem;
-            font-size: 1rem;
         }
         header nav a:hover {
             text-decoration: underline;
@@ -47,16 +49,15 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        .categories, .products, .about, .contact {
-            margin: 1rem auto;
+        .categories, .products, .cart {
+            margin: 1rem;
             padding: 1rem;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 1200px;
+            flex: 1;
         }
-        .categories h2, .products h2, .about h2, .contact h2 {
+        .categories h2, .products h2, .cart h2 {
             margin-top: 0;
         }
         .categories ul {
@@ -66,11 +67,6 @@
         .categories ul li {
             display: inline;
             margin-right: 1rem;
-        }
-        .categories ul li a {
-            text-decoration: none;
-            color: #003366;
-            font-weight: bold;
         }
         .products .product {
             display: inline-block;
@@ -98,39 +94,50 @@
             padding: 1rem;
             background-color: #003366;
             color: white;
-            position: relative;
-            bottom: 0;
             width: 100%;
         }
-        footer a {
-            color: #66b3ff;
-            text-decoration: none;
-        }
-        footer a:hover {
-            text-decoration: underline;
+        .hidden {
+            display: none;
         }
     </style>
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        function addToCart(productName) {
+            alert(`${productName} ha sido agregado al carrito.`);
+        }
+    </script>
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="iCompra_logo.png" alt="Logo de iCompra">
-            <div>iCompra</div>
+            <img src="iCompra_logo.png" alt="Logo de iCompra" />
+            <span>iCompra</span>
         </div>
         <nav>
-            <a href="#inicio">Inicio</a>
-            <a href="#categorias">Categorías</a>
-            <a href="#productos">Ofertas</a>
-            <a href="#contacto">Contacto</a>
-            <a href="#carrito">Carrito</a>
+            <a href="#" onclick="showSection('home')">Inicio</a>
+            <a href="#" onclick="showSection('categories')">Categorías</a>
+            <a href="#" onclick="showSection('products')">Ofertas</a>
+            <a href="#" onclick="showSection('cart')">Carrito</a>
         </nav>
     </header>
 
     <div class="search-bar">
-        <input type="text" placeholder="Busca productos, marcas y más...">
+        <input type="text" placeholder="Busca productos, marcas y más..." />
     </div>
 
-    <section class="categories" id="categorias">
+    <section id="home">
+        <h2>Bienvenido a iCompra</h2>
+        <p>Tu tienda online de confianza con las mejores ofertas y productos.</p>
+    </section>
+
+    <section id="categories" class="hidden">
         <h2>Categorías Destacadas</h2>
         <ul>
             <li><a href="#">Tecnología</a></li>
@@ -140,47 +147,47 @@
         </ul>
     </section>
 
-    <section class="products" id="productos">
+    <section id="products" class="hidden">
         <h2>Ofertas del Día</h2>
         <div class="product">
-            <img src="https://via.placeholder.com/150" alt="Producto 1">
+            <img src="https://via.placeholder.com/150" alt="Producto 1" />
             <h3>Producto 1</h3>
             <p>$10.00</p>
-            <button>Comprar</button>
+            <button onclick="addToCart('Producto 1')">Comprar</button>
         </div>
         <div class="product">
-            <img src="https://via.placeholder.com/150" alt="Producto 2">
+            <img src="https://via.placeholder.com/150" alt="Producto 2" />
             <h3>Producto 2</h3>
             <p>$20.00</p>
-            <button>Comprar</button>
+            <button onclick="addToCart('Producto 2')">Comprar</button>
         </div>
         <div class="product">
-            <img src="https://via.placeholder.com/150" alt="Producto 3">
+            <img src="https://via.placeholder.com/150" alt="Producto 3" />
             <h3>Producto 3</h3>
             <p>$30.00</p>
-            <button>Comprar</button>
+            <button onclick="addToCart('Producto 3')">Comprar</button>
         </div>
         <div class="product">
-            <img src="https://via.placeholder.com/150" alt="Producto 4">
+            <img src="https://via.placeholder.com/150" alt="Producto 4" />
             <h3>Producto 4</h3>
             <p>$40.00</p>
-            <button>Comprar</button>
+            <button onclick="addToCart('Producto 4')">Comprar</button>
         </div>
     </section>
 
-    <section class="about" id="inicio">
-        <h2>Sobre Nosotros</h2>
-        <p>iCompra es tu marketplace de confianza. Aquí encontrarás productos de calidad al mejor precio. ¡Explora nuestras ofertas diarias y descubre lo que tenemos para ti!</p>
-    </section>
-
-    <section class="contact" id="contacto">
-        <h2>Contacto</h2>
-        <p>¿Tienes preguntas? Escríbenos a <a href="mailto:contacto@icompra.com">contacto@icompra.com</a> o llama al +123 456 7890.</p>
+    <section id="cart" class="hidden">
+        <h2>Carrito de Compras</h2>
+        <p>Tu carrito está vacío. Agrega productos para comenzar.</p>
     </section>
 
     <footer>
-        &copy; 2025 iCompra. Todos los derechos reservados. <a href="#inicio">Volver al inicio</a>
+        &copy; 2025 iCompra. Todos los derechos reservados.
     </footer>
 </body>
 </html>
+
+      
+ 
+
+
 
