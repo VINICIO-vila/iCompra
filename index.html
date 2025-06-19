@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iCompra</title>
+    <title>iCompra - Tu Tienda Online</title>
     <style>
+        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -14,13 +15,13 @@
         }
 
         header {
-            background-color: #fff;
-            border-bottom: 1px solid #ddd;
+            background-color: #003366;
+            color: white;
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header .logo {
@@ -29,113 +30,129 @@
         }
 
         header .logo img {
-            height: 40px;
-            margin-right: 10px;
+            height: 50px;
+            margin-right: 15px;
         }
 
-        header nav {
-            display: flex;
-            gap: 1rem;
+        header .logo span {
+            font-size: 1.8rem;
+            font-weight: bold;
         }
 
         header nav a {
-            color: #333;
+            color: white;
             text-decoration: none;
+            margin: 0 1rem;
             font-weight: bold;
-            padding: 0.5rem;
+            transition: color 0.3s;
         }
 
         header nav a:hover {
-            background-color: #e6f0ff;
-            border-radius: 5px;
+            text-decoration: underline;
+            color: #ffcc00;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
             padding: 2rem;
             text-align: center;
         }
 
-        .welcome {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        .hero {
+            background-color: #e3f2fd;
+            padding: 3rem 1rem;
             margin-bottom: 2rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .welcome h1 {
-            color: #003366;
+        .hero h1 {
             font-size: 2.5rem;
-        }
-
-        .categories {
-            display: flex;
-            justify-content: space-around;
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-        }
-
-        .categories div {
-            text-align: center;
             color: #003366;
-        }
-
-        .categories div img {
-            width: 50px;
-            margin-bottom: 0.5rem;
-        }
-
-        .offers {
-            background-color: #1a202c;
-            color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .offers h2 {
-            margin-bottom: 1.5rem;
-        }
-
-        .products {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .product {
-            background-color: white;
-            color: #333;
-            padding: 1rem;
-            border-radius: 10px;
-            text-align: center;
-            width: 200px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .product img {
-            width: 100%;
-            height: auto;
             margin-bottom: 1rem;
         }
 
-        .product button {
-            background-color: #003366;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
+        .hero p {
+            font-size: 1.2rem;
+            color: #555;
         }
 
-        .product button:hover {
-            background-color: #00509e;
+        .search-bar {
+            margin-top: 2rem;
+        }
+
+        .search-bar input {
+            width: 80%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* Categorías */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .categories a {
+            text-decoration: none;
+            color: #003366;
+            font-weight: bold;
+            text-align: center;
+            background-color: #e8f0fe;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .categories a:hover {
+            background-color: #cce7ff;
+            transform: scale(1.05);
+        }
+
+        /* Ofertas */
+        .offers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .offers .product {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            background-color: white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .offers .product:hover {
+            transform: scale(1.05);
+        }
+
+        .offers .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .offers .product button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .offers .product button:hover {
+            background-color: #004d99;
         }
 
         footer {
@@ -143,7 +160,17 @@
             padding: 1rem;
             background-color: #003366;
             color: white;
-            margin-top: 2rem;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #fff;
         }
 
         .hidden {
@@ -162,115 +189,107 @@
             <span>iCompra</span>
         </div>
         <nav>
-            <a href="#" onclick="showSection('home')">Inicio</a>
-            <a href="#" onclick="showSection('categories')">Categorías</a>
-            <a href="#" onclick="showSection('offers')">Ofertas</a>
-            <a href="#" onclick="showCart()">Carrito</a>
+            <a href="#" onclick="showPage('home')">Inicio</a>
+            <a href="#" onclick="showPage('categories')">Categorías</a>
+            <a href="#" onclick="showPage('offers')">Ofertas</a>
+            <a href="#" onclick="showPage('cart')">Carrito</a>
         </nav>
     </header>
 
     <main>
         <section id="home" class="container active">
-            <div class="welcome">
+            <div class="hero">
                 <h1>Bienvenido a iCompra</h1>
                 <p>Tu tienda online de confianza con las mejores ofertas y productos.</p>
-            </div>
-            <div class="categories">
-                <div onclick="showCategory('Tecnología')">
-                    <img src="https://via.placeholder.com/50" alt="Tecnología">
-                    <p>Tecnología</p>
-                </div>
-                <div onclick="showCategory('Hogar')">
-                    <img src="https://via.placeholder.com/50" alt="Hogar">
-                    <p>Hogar</p>
-                </div>
-                <div onclick="showCategory('Ropa')">
-                    <img src="https://via.placeholder.com/50" alt="Ropa">
-                    <p>Ropa</p>
-                </div>
-                <div onclick="showCategory('Deportes')">
-                    <img src="https://via.placeholder.com/50" alt="Deportes">
-                    <p>Deportes</p>
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar productos, marcas y más...">
                 </div>
             </div>
         </section>
 
         <section id="categories" class="container hidden">
-            <h2>Categorías</h2>
-            <p>Selecciona una categoría para explorar sus productos.</p>
+            <h1>Categorías</h1>
+            <div class="categories">
+                <a href="#" onclick="showCategory('Tecnología')">Tecnología</a>
+                <a href="#" onclick="showCategory('Hogar')">Hogar</a>
+                <a href="#" onclick="showCategory('Ropa')">Ropa</a>
+                <a href="#" onclick="showCategory('Deportes')">Deportes</a>
+            </div>
+        </section>
+
+        <section id="category-details" class="container hidden">
+            <h1 id="category-title" style="color: #003366;"></h1>
+            <p>Aquí se mostrarán los productos de la categoría seleccionada.</p>
         </section>
 
         <section id="offers" class="container hidden">
+            <h1>Ofertas del Día</h1>
             <div class="offers">
-                <h2>Ofertas del Día</h2>
-                <div class="products">
-                    <div class="product">
-                        <img src="https://via.placeholder.com/150" alt="Producto 1">
-                        <h3>Producto 1</h3>
-                        <p>$100</p>
-                        <button onclick="addToCart('Producto 1')">Comprar</button>
-                    </div>
-                    <div class="product">
-                        <img src="https://via.placeholder.com/150" alt="Producto 2">
-                        <h3>Producto 2</h3>
-                        <p>$100</p>
-                        <button onclick="addToCart('Producto 2')">Comprar</button>
-                    </div>
-                    <div class="product">
-                        <img src="https://via.placeholder.com/150" alt="Producto 3">
-                        <h3>Producto 3</h3>
-                        <p>$300</p>
-                        <button onclick="addToCart('Producto 3')">Comprar</button>
-                    </div>
-                    <div class="product">
-                        <img src="https://via.placeholder.com/150" alt="Producto 4">
-                        <h3>Producto 4</h3>
-                        <p>$400</p>
-                        <button onclick="addToCart('Producto 4')">Comprar</button>
-                    </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/200" alt="Producto 1">
+                    <h3>Producto 1</h3>
+                    <p>$10.00</p>
+                    <button onclick="addToCart('Producto 1')">Comprar</button>
+                </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/200" alt="Producto 2">
+                    <h3>Producto 2</h3>
+                    <p>$20.00</p>
+                    <button onclick="addToCart('Producto 2')">Comprar</button>
+                </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/200" alt="Producto 3">
+                    <h3>Producto 3</h3>
+                    <p>$30.00</p>
+                    <button onclick="addToCart('Producto 3')">Comprar</button>
+                </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/200" alt="Producto 4">
+                    <h3>Producto 4</h3>
+                    <p>$40.00</p>
+                    <button onclick="addToCart('Producto 4')">Comprar</button>
                 </div>
             </div>
         </section>
 
         <section id="cart" class="container hidden">
-            <h2>Carrito</h2>
-            <ul id="cart-list"></ul>
-            <p id="empty-cart">Tu carrito está vacío.</p>
+            <h1>Carrito</h1>
+            <p id="cart-content">Tu carrito está vacío.</p>
         </section>
     </main>
 
     <footer>
-        &copy; 2025 iCompra. Todos los derechos reservados.
+        <p>&copy; 2025 iCompra. Todos los derechos reservados. Visita nuestra <a href="#">política de privacidad</a>.</p>
     </footer>
 
     <script>
-        const cart = [];
+        let cart = [];
 
-        function showSection(sectionId) {
+        function showPage(pageId) {
             document.querySelectorAll('section').forEach(section => {
                 section.classList.add('hidden');
             });
-            document.getElementById(sectionId).classList.remove('hidden');
+            document.getElementById(pageId).classList.remove('hidden');
         }
 
-        function showCategory(category) {
-            alert(`Mostrando productos de la categoría: ${category}`);
+        function showCategory(categoryName) {
+            showPage('category-details');
+            document.getElementById('category-title').textContent = categoryName;
         }
 
         function addToCart(productName) {
             cart.push(productName);
-            document.getElementById('empty-cart').style.display = 'none';
-            const cartList = document.getElementById('cart-list');
-            const listItem = document.createElement('li');
-            listItem.textContent = productName;
-            cartList.appendChild(listItem);
-            showSection('cart');
+            alert(`${productName} ha sido agregado al carrito.`);
+            updateCart();
+            showPage('cart');
         }
 
-        function showCart() {
-            showSection('cart');
+        function updateCart() {
+            const cartContent = document.getElementById('cart-content');
             if (cart.length === 0) {
-                document.getElementById('empty-cart').style.display = 'block';
+                cartContent.textContent = 'Tu carrito está vacío.';
+            } else {
+                cartContent.innerHTML = '<ul>' + cart.map(item => `<li>${item}</li>`).join('') + '</ul>';
             }
         }
     </script>
