@@ -14,12 +14,13 @@
         }
 
         header {
-            background-color: #003366;
-            color: white;
-            padding: 1rem;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            padding: 1rem 2rem;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         header .logo {
@@ -28,90 +29,113 @@
         }
 
         header .logo img {
-            height: 50px;
-            margin-right: 15px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        header nav {
+            display: flex;
+            gap: 1rem;
         }
 
         header nav a {
-            color: white;
+            color: #333;
             text-decoration: none;
-            margin: 0 1rem;
             font-weight: bold;
+            padding: 0.5rem;
         }
 
         header nav a:hover {
-            text-decoration: underline;
+            background-color: #e6f0ff;
+            border-radius: 5px;
         }
 
-        .content {
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 2rem;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .home h2 {
-            font-size: 2rem;
-            color: #003366;
             text-align: center;
         }
 
-        .categories ul {
+        .welcome {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .welcome h1 {
+            color: #003366;
+            font-size: 2.5rem;
+        }
+
+        .categories {
             display: flex;
             justify-content: space-around;
-            list-style: none;
-            padding: 0;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
         }
 
-        .categories ul li {
-            margin: 0.5rem;
-        }
-
-        .categories ul li a {
+        .categories div {
+            text-align: center;
             color: #003366;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
         }
 
-        .categories ul li a:hover {
-            text-decoration: underline;
+        .categories div img {
+            width: 50px;
+            margin-bottom: 0.5rem;
+        }
+
+        .offers {
+            background-color: #1a202c;
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .offers h2 {
+            margin-bottom: 1.5rem;
         }
 
         .products {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
             gap: 1rem;
-            margin-top: 2rem;
         }
 
-        .product-card {
+        .product {
             background-color: white;
+            color: #333;
             padding: 1rem;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
+            width: 200px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .product-card img {
-            max-width: 100%;
+        .product img {
+            width: 100%;
             height: auto;
-            border-radius: 10px;
+            margin-bottom: 1rem;
         }
 
-        .product-card button {
+        .product button {
             background-color: #003366;
             color: white;
             border: none;
             padding: 0.5rem 1rem;
             border-radius: 5px;
-            margin-top: 1rem;
             cursor: pointer;
         }
 
-        .product-card button:hover {
-            background-color: #004d99;
+        .product button:hover {
+            background-color: #00509e;
         }
 
         footer {
@@ -119,43 +143,23 @@
             padding: 1rem;
             background-color: #003366;
             color: white;
+            margin-top: 2rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .active {
+            display: block;
         }
     </style>
-    <script>
-        const cart = [];
-
-        function showSection(sectionId) {
-            document.querySelectorAll('.content').forEach(section => {
-                section.classList.add('hidden');
-            });
-            document.getElementById(sectionId).classList.remove('hidden');
-        }
-
-        function showCategory(category) {
-            const categorySection = document.getElementById('category-details');
-            categorySection.querySelector('h2').textContent = category;
-            showSection('category-details');
-        }
-
-        function addToCart(product) {
-            cart.push(product);
-            alert(`${product} ha sido agregado al carrito.`);
-            showCart();
-        }
-
-        function showCart() {
-            const cartSection = document.getElementById('cart');
-            const cartList = cartSection.querySelector('.cart-list');
-            cartList.innerHTML = cart.length ? cart.map(item => `<li>${item}</li>`).join('') : '<p>Tu carrito está vacío.</p>';
-            showSection('cart');
-        }
-    </script>
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="iCompra_logo.png" alt="iCompra Logo">
-            <h1>iCompra</h1>
+            <img src="iCompra_logo.png" alt="Logo de iCompra">
+            <span>iCompra</span>
         </div>
         <nav>
             <a href="#" onclick="showSection('home')">Inicio</a>
@@ -166,52 +170,109 @@
     </header>
 
     <main>
-        <section id="home" class="content">
-            <h2>Bienvenido a iCompra</h2>
-            <p>Tu tienda online de confianza con las mejores ofertas y productos.</p>
-        </section>
-
-        <section id="categories" class="content hidden">
-            <h2>Categorías</h2>
-            <ul>
-                <li><a href="#" onclick="showCategory('Tecnología')">Tecnología</a></li>
-                <li><a href="#" onclick="showCategory('Hogar')">Hogar</a></li>
-                <li><a href="#" onclick="showCategory('Ropa')">Ropa</a></li>
-                <li><a href="#" onclick="showCategory('Deportes')">Deportes</a></li>
-            </ul>
-        </section>
-
-        <section id="category-details" class="content hidden">
-            <h2></h2>
-            <p>Productos de esta categoría aparecerán aquí.</p>
-        </section>
-
-        <section id="offers" class="content hidden">
-            <h2>Ofertas del Día</h2>
-            <div class="products">
-                <div class="product-card">
-                    <img src="https://via.placeholder.com/150" alt="Producto 1">
-                    <h3>Producto 1</h3>
-                    <p>$100</p>
-                    <button onclick="addToCart('Producto 1')">Comprar</button>
+        <section id="home" class="container active">
+            <div class="welcome">
+                <h1>Bienvenido a iCompra</h1>
+                <p>Tu tienda online de confianza con las mejores ofertas y productos.</p>
+            </div>
+            <div class="categories">
+                <div onclick="showCategory('Tecnología')">
+                    <img src="https://via.placeholder.com/50" alt="Tecnología">
+                    <p>Tecnología</p>
                 </div>
-                <div class="product-card">
-                    <img src="https://via.placeholder.com/150" alt="Producto 2">
-                    <h3>Producto 2</h3>
-                    <p>$200</p>
-                    <button onclick="addToCart('Producto 2')">Comprar</button>
+                <div onclick="showCategory('Hogar')">
+                    <img src="https://via.placeholder.com/50" alt="Hogar">
+                    <p>Hogar</p>
+                </div>
+                <div onclick="showCategory('Ropa')">
+                    <img src="https://via.placeholder.com/50" alt="Ropa">
+                    <p>Ropa</p>
+                </div>
+                <div onclick="showCategory('Deportes')">
+                    <img src="https://via.placeholder.com/50" alt="Deportes">
+                    <p>Deportes</p>
                 </div>
             </div>
         </section>
 
-        <section id="cart" class="content hidden">
+        <section id="categories" class="container hidden">
+            <h2>Categorías</h2>
+            <p>Selecciona una categoría para explorar sus productos.</p>
+        </section>
+
+        <section id="offers" class="container hidden">
+            <div class="offers">
+                <h2>Ofertas del Día</h2>
+                <div class="products">
+                    <div class="product">
+                        <img src="https://via.placeholder.com/150" alt="Producto 1">
+                        <h3>Producto 1</h3>
+                        <p>$100</p>
+                        <button onclick="addToCart('Producto 1')">Comprar</button>
+                    </div>
+                    <div class="product">
+                        <img src="https://via.placeholder.com/150" alt="Producto 2">
+                        <h3>Producto 2</h3>
+                        <p>$100</p>
+                        <button onclick="addToCart('Producto 2')">Comprar</button>
+                    </div>
+                    <div class="product">
+                        <img src="https://via.placeholder.com/150" alt="Producto 3">
+                        <h3>Producto 3</h3>
+                        <p>$300</p>
+                        <button onclick="addToCart('Producto 3')">Comprar</button>
+                    </div>
+                    <div class="product">
+                        <img src="https://via.placeholder.com/150" alt="Producto 4">
+                        <h3>Producto 4</h3>
+                        <p>$400</p>
+                        <button onclick="addToCart('Producto 4')">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cart" class="container hidden">
             <h2>Carrito</h2>
-            <ul class="cart-list"></ul>
+            <ul id="cart-list"></ul>
+            <p id="empty-cart">Tu carrito está vacío.</p>
         </section>
     </main>
 
     <footer>
         &copy; 2025 iCompra. Todos los derechos reservados.
     </footer>
+
+    <script>
+        const cart = [];
+
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        function showCategory(category) {
+            alert(`Mostrando productos de la categoría: ${category}`);
+        }
+
+        function addToCart(productName) {
+            cart.push(productName);
+            document.getElementById('empty-cart').style.display = 'none';
+            const cartList = document.getElementById('cart-list');
+            const listItem = document.createElement('li');
+            listItem.textContent = productName;
+            cartList.appendChild(listItem);
+            showSection('cart');
+        }
+
+        function showCart() {
+            showSection('cart');
+            if (cart.length === 0) {
+                document.getElementById('empty-cart').style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>
